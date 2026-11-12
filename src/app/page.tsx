@@ -59,10 +59,10 @@ const GooglePlayIcon = ({ className }: { className?: string }) => (
 );
 
 const StoreButtons = ({ className = "" }: { className?: string }) => (
-  <div className={`flex flex-wrap gap-3 ${className}`}>
+  <div className={`flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap ${className}`}>
     <a
       href={PLAY_STORE_URL}
-      className="inline-flex items-center gap-3 rounded-2xl bg-ink px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-black hover:shadow-lg"
+      className="inline-flex items-center justify-center gap-3 rounded-2xl bg-ink px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-black hover:shadow-lg min-[400px]:justify-start"
       aria-label="Descargar en Google Play"
     >
       <GooglePlayIcon className="h-7 w-7" />
@@ -73,7 +73,7 @@ const StoreButtons = ({ className = "" }: { className?: string }) => (
     </a>
     <a
       href={APP_STORE_URL}
-      className="inline-flex items-center gap-3 rounded-2xl bg-ink px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-black hover:shadow-lg"
+      className="inline-flex items-center justify-center gap-3 rounded-2xl bg-ink px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-black hover:shadow-lg min-[400px]:justify-start"
       aria-label="Descargar en App Store"
     >
       <AppleIcon className="h-7 w-7" />
@@ -98,7 +98,7 @@ const SectionHeader = ({
   title: React.ReactNode;
   description?: string;
 }) => (
-  <div className="mx-auto mb-14 max-w-2xl text-center">
+  <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
     <Eyebrow>{eyebrow}</Eyebrow>
     <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px] md:leading-[1.15]">
       {title}
@@ -118,10 +118,10 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-line/70 bg-white/85 backdrop-blur-md">
       <Container>
-        <div className="flex h-18 items-center justify-between py-4">
+        <div className="flex h-16 items-center justify-between sm:h-18">
           <Logo />
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((l) => (
               <a key={l.href} href={l.href} className="text-sm font-semibold text-muted transition-colors hover:text-brand-500">
                 {l.label}
@@ -131,14 +131,14 @@ const Navbar = () => {
 
           <a
             href="#descargar"
-            className="hidden items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 lg:inline-flex"
           >
             <Download className="h-4 w-4" />
             Descargar app
           </a>
 
           <button
-            className="rounded-xl p-2 text-ink md:hidden"
+            className="-mr-2 rounded-xl p-2 text-ink lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
@@ -148,7 +148,7 @@ const Navbar = () => {
         </div>
 
         {open && (
-          <div className="flex flex-col gap-1 pb-5 md:hidden">
+          <div className="flex flex-col gap-1 pb-5 lg:hidden">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -175,32 +175,32 @@ const Navbar = () => {
 };
 
 const Hero = () => (
-  <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white pt-32 pb-20 lg:pt-40 lg:pb-28">
+  <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28">
     <div className="pointer-events-none absolute -top-40 -right-40 h-[480px] w-[480px] rounded-full bg-brand-100/70 blur-3xl" />
     <Container>
-      <div className="relative grid items-center gap-16 lg:grid-cols-2">
+      <div className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5">
             <Sparkles className="h-4 w-4 text-brand-500" />
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-500">Cuidado que conecta</span>
           </div>
 
-          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[58px]">
+          <h1 className="text-[34px] font-extrabold leading-[1.1] tracking-tight text-ink min-[400px]:text-4xl sm:text-5xl lg:text-[58px]">
             Tu compañera esencial en el{" "}
             <span className="text-brand-500">camino de la maternidad.</span>
           </h1>
 
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
             Tecnología que te escucha, te orienta y te acompaña. Monitorea tu salud y la de tu bebé desde un solo lugar,
             con la tranquilidad de sentirte siempre acompañada.
           </p>
 
           <StoreButtons className="mt-9" />
 
-          <div className="mt-10 flex items-center gap-4">
+          <div className="mt-10 flex items-center gap-3 sm:gap-4">
             <div className="flex -space-x-3">
               {["bg-[#FFC4C4]", "bg-[#D4A3A3]", "bg-[#E5B5B5]", "bg-[#F5D5D5]"].map((bg) => (
-                <div key={bg} className={`h-10 w-10 rounded-full border-2 border-white ${bg}`} />
+                <div key={bg} className={`h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10 border-2 border-white ${bg}`} />
               ))}
             </div>
             <p className="text-sm text-muted">
@@ -209,18 +209,18 @@ const Hero = () => (
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="absolute inset-0 translate-x-5 translate-y-5 rounded-[36px] bg-brand-100" />
+        <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+          <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[36px] bg-brand-100 sm:translate-x-5 sm:translate-y-5" />
           <div className="relative overflow-hidden rounded-[36px] bg-white p-2 shadow-xl shadow-brand-200/40">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
               alt="Mujer embarazada sonriendo"
-              className="h-[420px] w-full rounded-[30px] object-cover sm:h-[500px]"
+              className="h-[340px] w-full rounded-[30px] object-cover min-[400px]:h-[420px] sm:h-[500px]"
             />
           </div>
 
-          <div className="absolute bottom-8 -left-4 flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.12)] sm:-left-8">
+          <div className="absolute bottom-6 -left-2 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 sm:bottom-8 sm:-left-8 sm:px-5 sm:py-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.12)]">
             <div className="rounded-xl bg-emerald-50 p-2.5">
               <Heart className="h-5 w-5 fill-emerald-500 text-emerald-500" />
             </div>
@@ -249,7 +249,7 @@ const Mission = () => {
     { icon: Stethoscope, title: "Cuidado humano", desc: "Información lista para compartir con tus profesionales de salud." },
   ];
   return (
-    <section id="nosotros" className="py-24">
+    <section id="nosotros" className="py-16 sm:py-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
@@ -257,7 +257,7 @@ const Mission = () => {
             <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl md:text-[44px] md:leading-[1.15]">
               Cuidarte también es <span className="text-brand-500">escucharte.</span>
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-muted">
+            <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
               En HelpMom creemos que ninguna mamá debería sentirse sola al tomar decisiones sobre su salud. Por eso
               conectamos tecnología, inteligencia artificial y el cuidado humano de los profesionales para acompañarte en
               cada etapa.
@@ -265,7 +265,7 @@ const Mission = () => {
           </div>
           <ul className="space-y-4">
             {pillars.map(({ icon: Icon, title, desc }) => (
-              <li key={title} className="flex gap-5 rounded-3xl border border-line p-6 transition hover:border-brand-200 hover:bg-brand-50/50">
+              <li key={title} className="flex gap-4 rounded-3xl border border-line p-5 sm:gap-5 sm:p-6 transition hover:border-brand-200 hover:bg-brand-50/50">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50">
                   <Icon className="h-5 w-5 text-brand-500" />
                 </div>
@@ -315,7 +315,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="funciones" className="bg-brand-50/60 py-24">
+    <section id="funciones" className="bg-brand-50/60 py-16 sm:py-24">
       <Container>
         <SectionHeader
           eyebrow="Todo en un solo lugar"
@@ -351,7 +351,7 @@ const PlanFeature = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Pricing = () => (
-  <section id="planes" className="py-24">
+  <section id="planes" className="py-16 sm:py-24">
     <Container>
       <SectionHeader
         eyebrow="Elige tu tranquilidad"
@@ -359,9 +359,9 @@ const Pricing = () => (
         description="Empieza gratis y mejora cuando lo necesites. Sin compromisos."
       />
 
-      <div className="mx-auto grid max-w-4xl items-stretch gap-8 md:grid-cols-2">
+      <div className="mx-auto grid max-w-md items-stretch gap-8 md:max-w-4xl md:grid-cols-2 md:gap-6 lg:gap-8">
         {/* Plan Básico */}
-        <div className="flex flex-col rounded-[32px] border border-line bg-white p-8 sm:p-10">
+        <div className="flex flex-col rounded-[32px] border border-line bg-white p-7 sm:p-10 md:p-8 lg:p-10">
           <h3 className="text-xl font-extrabold text-ink">Plan Básico</h3>
           <p className="mt-2 text-sm text-muted">Para empezar a sentirte acompañada.</p>
           <div className="mt-6 flex items-baseline gap-2">
@@ -386,8 +386,8 @@ const Pricing = () => (
         </div>
 
         {/* Plan Cuidado Integral */}
-        <div className="relative flex flex-col rounded-[32px] border-2 border-brand-300 bg-brand-50 p-8 shadow-xl shadow-brand-100 sm:p-10">
-          <span className="absolute -top-3.5 right-8 rounded-full bg-brand-500 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">
+        <div className="relative flex flex-col rounded-[32px] border-2 border-brand-300 bg-brand-50 p-7 shadow-xl shadow-brand-100 sm:p-10 md:p-8 lg:p-10">
+          <span className="absolute -top-3.5 right-6 rounded-full sm:right-8 bg-brand-500 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">
             Más elegido
           </span>
           <h3 className="text-xl font-extrabold text-ink">Plan Cuidado Integral</h3>
@@ -441,7 +441,7 @@ const FAQS = [
 const FAQ = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   return (
-    <section id="faq" className="bg-brand-50/60 py-24">
+    <section id="faq" className="bg-brand-50/60 py-16 sm:py-24">
       <Container>
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
           <div>
@@ -467,7 +467,7 @@ const FAQ = () => {
                 <div key={item.q} className="rounded-2xl border border-line bg-white">
                   <button
                     onClick={() => setOpenIdx(isOpen ? null : idx)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
                     aria-expanded={isOpen}
                   >
                     <span className="font-bold text-ink">{item.q}</span>
@@ -475,7 +475,7 @@ const FAQ = () => {
                       className={`h-5 w-5 shrink-0 text-brand-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
                     />
                   </button>
-                  {isOpen && <p className="px-6 pb-6 text-sm leading-relaxed text-muted">{item.a}</p>}
+                  {isOpen && <p className="px-5 pb-5 text-sm leading-relaxed text-muted sm:px-6 sm:pb-6">{item.a}</p>}
                 </div>
               );
             })}
@@ -487,9 +487,9 @@ const FAQ = () => {
 };
 
 const DownloadCTA = () => (
-  <section id="descargar" className="py-24">
+  <section id="descargar" className="py-16 sm:py-24">
     <Container>
-      <div className="relative overflow-hidden rounded-[40px] bg-ink px-8 py-14 sm:px-14 sm:py-16">
+      <div className="relative overflow-hidden rounded-[32px] bg-ink px-6 py-12 sm:rounded-[40px] sm:px-12 sm:py-16 lg:px-14">
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand-300/20 blur-3xl" />
         <div className="relative grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
@@ -497,7 +497,7 @@ const DownloadCTA = () => (
             <span className="mb-4 inline-block text-xs font-bold uppercase tracking-[0.2em] text-brand-300">
               Empieza hoy, gratis
             </span>
-            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-[44px]">
+            <h2 className="text-[28px] font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-[44px]">
               Lleva HelpMom contigo a todas partes.
             </h2>
             <p className="mt-4 max-w-lg leading-relaxed text-white/70">
@@ -517,14 +517,14 @@ const DownloadCTA = () => (
 );
 
 const Contact = () => (
-  <section id="contacto" className="pb-24">
+  <section id="contacto" className="pb-16 sm:pb-24">
     <Container>
-      <div className="grid gap-12 rounded-[40px] bg-brand-100 p-8 sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-16">
+      <div className="grid gap-10 rounded-[32px] bg-brand-100 p-6 sm:rounded-[40px] sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-16">
         <div>
           <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/70">
             <Mail className="h-5 w-5 text-brand-600" />
           </div>
-          <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-[28px] font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
             Estamos a un mensaje de distancia.
           </h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
@@ -567,13 +567,13 @@ const Contact = () => (
 const Footer = () => (
   <footer className="border-t border-line py-12">
     <Container>
-      <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+      <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
         <div className="flex flex-col items-center gap-2 md:items-start">
           <Logo size="sm" />
           <span className="text-xs text-muted">Cuidando de ti, cuidando de ambos.</span>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs font-semibold text-muted">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs lg:gap-x-8 font-semibold text-muted">
           <a href="#" className="transition-colors hover:text-brand-500">Términos y condiciones</a>
           <a href="#" className="transition-colors hover:text-brand-500">Política de privacidad</a>
           <a href="#contacto" className="transition-colors hover:text-brand-500">Ayuda</a>
@@ -587,7 +587,7 @@ const Footer = () => (
 
 export default function HelpMomLanding() {
   return (
-    <div className="min-h-screen bg-white font-sans text-ink selection:bg-brand-200">
+    <div className="min-h-screen overflow-x-clip bg-white font-sans text-ink selection:bg-brand-200">
       <Navbar />
       <main>
         <Hero />
